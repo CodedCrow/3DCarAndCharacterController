@@ -13,8 +13,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 InputVector;
     [SerializeField] CharacterController CharControl;
     [SerializeField] float Speed;
-    [SerializeField] float YVelocity;
-    [SerializeField] bool test;
+    private float YVelocity;
+    [SerializeField] private float JumpFloaty; //max time the jump button can be held for max jump height
 
     private float JumpTimer;
 
@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
         //body
         InputVector.x = Input.GetAxis("Horizontal");
         InputVector.z = Input.GetAxis("Vertical");
-        if(Input.GetButtonDown("Jump"))
+        if(Input.GetButtonDown("Jump") && CharControl.isGrounded)
         {
             YVelocity = 2f;
             JumpTimer = 0.15f;
